@@ -36,17 +36,14 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
-  // const oddNumbers = [];
-  // let firstNumber = 1;
+function generateOdds(len) {
+  const arr = Array(len).fill(1);
+  const result = arr.reduce((total, value, index) => {
+    total.push(value + (index * 2));
+    return total;
+  }, []);
 
-  // for (let i = len; i > 0; i -= 1) {
-  //   oddNumbers.push(firstNumber);
-  //   firstNumber += 2;
-  // }
-
-  // return oddNumbers;
+  return result;
 }
 
 
@@ -162,8 +159,9 @@ function getStringsLength(arr) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 'x', 0  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  arr.splice(index, 0, item);
+  return arr;
 }
 
 /**
@@ -254,8 +252,17 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  const result = arr.reduce((total, value, index) => {
+    if (index === 0) {
+      total.push(value);
+      return total;
+    }
+    const sum = value + total[index - 1];
+    total.push(sum);
+    return total;
+  }, []);
+  return result;
 }
 
 /**
